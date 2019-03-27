@@ -39,8 +39,8 @@ def main():
 	while (guesses > 0 or gameWon != True):
 
 		os.system('clear')
-		print("Guesses remaining:", guesses)	#TODO make print block look better
-		print(currentProgress)
+		print("Guesses remaining:", guesses)	#TODO add a hangman or images?
+		print("Word:", currentProgress)
 		print("Misses:", missedGuesses)
 		#check for win condition before accepting more input
 		gameWon = checkWin(currentProgress,correctWord)
@@ -50,8 +50,14 @@ def main():
 		if(guesses == 0):
 			print("You lose, good day sir")
 			return
-		print("Guess a Letter!")
-		playerGuess = raw_input()	#TODO ensure only a single char is entered
+		#ensure guesses are a single character
+		while True:
+			print("Guess a Letter!")
+			playerGuess = raw_input(':')
+			if len(playerGuess) == 1:
+				break
+			print("Please enter a single letter")
+			print
 		#TODO find a more pythonic way to do this, using a temp int counter feels very C++
 		i = 0
 		for letter in correctWord:
