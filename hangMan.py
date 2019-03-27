@@ -54,7 +54,7 @@ def main():
 		while True:
 			print("Guess a Letter!")
 			playerGuess = raw_input(':')
-			if len(playerGuess) == 1:
+			if len(playerGuess) == 1 and playerGuess.isalpha():
 				break
 			print("Please enter a single letter")
 			print
