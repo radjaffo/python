@@ -2,6 +2,7 @@
 import random
 import re
 import os
+#DEBUG import time
 
 
 
@@ -32,7 +33,7 @@ def main():
 		print "Please enter a word"
 		#capture user input for word to guess
 		solution = raw_input(':')
-		#ensure it is a word
+		#ensure it is a word     			#TODO check against some dictionary? probably too intensive
 		if solution.isalpha():
 			break
 		print "Please enter a valid word"
@@ -54,30 +55,33 @@ def main():
 		if(gameWon == True):
 			print("You win!")
 			return
-		if(guesses == 0):
+		elif(guesses == 0):
 			print("You lose, good day sir")
 			return
 		#ensure guesses are a single character
-		while True:
-			print("Guess a Letter!")
-			playerGuess = raw_input(':')
-			if len(playerGuess) == 1 and playerGuess.isalpha():
-				break
-			print("Please enter a single letter")
-			print
-		#TODO find a more pythonic way to do this, using a temp int counter feels very C++
-		i = 0
-		for letter in correctWord:
-			#check for a hit
-			if playerGuess == letter:
-				currentProgress[i] = letter
-				guesses += 1
-				break
-			i+=1
-			#check for a miss
-			if(i == len(correctWord) and playerGuess != letter):
-				missedGuesses.append(playerGuess)
-		guesses -=1
+		else:
+			while True:
+				print("Guess a Letter!")
+				playerGuess = raw_input(':')
+				#TODO ensure player has not guessed this letter already
+				if len(playerGuess) == 1 and playerGuess.isalpha():
+					break
+				print("Please enter a single letter")
+				print
+				
+			for (x, letter) in enumerate(correctWord):
+				#check for a correct player guess
+				print len(correctWord)
+				if playerGuess == letter:
+					currentProgress[x] = letter
+					guesses += 1
+					break
+				#check for a miss
+				if(x == len(correctWord)-1 and playerGuess != letter):
+					#DEBUG print"entered miss conditional"
+					#DEBUG time.pause(1)
+					missedGuesses.append(playerGuess)
+			guesses -=1
 	
 
 if __name__ == "__main__":
