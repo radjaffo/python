@@ -28,9 +28,16 @@ def main():
 	currentProgress = []
 
 	print("Welcome to Hangman!")
-	print "Please enter a word: "
-	#capture user input for word to guess
-	solution = raw_input()
+	while True:
+		print "Please enter a word"
+		#capture user input for word to guess
+		solution = raw_input(':')
+		#ensure it is a word
+		if solution.isalpha():
+			break
+		print "Please enter a valid word"
+		print
+	
 	#parse list and remove all non letters
 	correctWord = validLetters(solution)
 	#create our underscore list to display correct guesses
@@ -39,7 +46,7 @@ def main():
 	while (guesses > 0 or gameWon != True):
 
 		os.system('clear')
-		print("Guesses remaining:", guesses)	#TODO add a hangman or images?
+		print "Guesses remaining:", guesses	#TODO add a hangman or images?
 		print("Word:", currentProgress)
 		print("Misses:", missedGuesses)
 		#check for win condition before accepting more input
