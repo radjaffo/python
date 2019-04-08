@@ -30,13 +30,13 @@ def main():
 
 	print("Welcome to Hangman!")
 	while True:
-		print "Please enter a word"
+		print("Please enter a word")
 		#capture user input for word to guess
-		solution = raw_input(':')
+		solution = input(':')
 		#ensure it is a word     			#TODO check against some dictionary? probably too intensive
 		if solution.isalpha():
 			break
-		print "Please enter a valid word"
+		print("Please enter a valid word")
 		print
 	
 	#parse list and remove all non letters
@@ -47,7 +47,7 @@ def main():
 	while (guesses > 0 or gameWon != True):
 
 		os.system('clear')
-		print "Guesses remaining:", guesses	#TODO add a hangman or images?
+		print("Guesses remaining:", guesses)	#TODO add a hangman or images?
 		print("Word:", currentProgress)
 		print("Misses:", missedGuesses)
 		#check for win condition before accepting more input
@@ -62,7 +62,7 @@ def main():
 		else:
 			while True:
 				print("Guess a Letter!")
-				playerGuess = raw_input(':')
+				playerGuess = input(':')
 				#TODO ensure player has not guessed this letter already
 				if len(playerGuess) == 1 and playerGuess.isalpha():
 					break
@@ -71,7 +71,7 @@ def main():
 				
 			for (x, letter) in enumerate(correctWord):
 				#check for a correct player guess
-				print len(correctWord)
+				print(len(correctWord))
 				if playerGuess == letter:
 					currentProgress[x] = letter
 					guesses += 1
